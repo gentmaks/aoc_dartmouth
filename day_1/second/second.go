@@ -1,15 +1,14 @@
-//Package first
-package first
+//Package second
+package second
 
 import (
-	"os"
 	"fmt"
-	"log"
 	"bufio"
+	"os"
+	"log"
 	"strconv"
 )
-
-func SolveFirst() {
+func SolveSecond() {
 	path := "./day_1/first/input.txt"
 	fmt.Println(path)
 	init := 50
@@ -28,14 +27,17 @@ func SolveFirst() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		if string(op) == "L" {
-			init -= rest
-		} else {
-			init += rest
-		}
-		init = ((init % 100) + 100) % 100
-		if init == 0 {
-			res++
+		for i := range rest {
+			_ = i
+			if string(op) == "L" {
+				init --
+			} else {
+				init ++ 
+			}
+			init = ((init % 100) + 100) % 100
+			if init == 0 {
+				res++
+			}
 		}
 	}
 	if err := scanner.Err(); err != nil {
@@ -43,4 +45,3 @@ func SolveFirst() {
 	}
 	fmt.Println("The amount of times 0 is reached is: ", res)
 }
-
