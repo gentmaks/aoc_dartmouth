@@ -6,4 +6,5 @@ import (
 
 func main() {
 	first.SolveFirst()
+	first.SolveSecond()
 }
