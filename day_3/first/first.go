@@ -23,7 +23,7 @@ func SolveFirst() {
 		var bankHigh int
 		for i := 0; i < len(line) - 1; i++ {
 			for j := i + 1; j < len(line); j++ {
-				num, err := strconv.Atoi(line[i:i+1] + line[j:j+1])
+				num, err := strconv.Atoi(string(line[i] + line[j]))
 				if err != nil {
 					fmt.Println("Error converting string to integer")
 					os.Exit(1)
