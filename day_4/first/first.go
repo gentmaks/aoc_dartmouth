@@ -76,7 +76,7 @@ func getValidCount(f *os.File, numRows int, numCols int) int {
 	if !ok {
 		log.Fatalln("Could not populate grid")
 	}
-	fmt.Println("After populating: ")
+	// fmt.Println("After populating: ")
 	// printGrid(grid)
 	for i, row := range(grid) {
 		for j, col := range(row){
