@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/gentmaks/aoc_dartmouth/day_4/first"
-	"github.com/gentmaks/aoc_dartmouth/day_4/second"
+	"github.com/gentmaks/aoc_dartmouth/day_5/first"
+	"github.com/gentmaks/aoc_dartmouth/day_5/second"
 )
 
 func main() {
