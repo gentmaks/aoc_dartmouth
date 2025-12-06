@@ -1,17 +1,17 @@
-//Package first
+// Package first
 package first
 
 import (
-	"os"
-	"log"
 	"bufio"
-	"strings"
-	"strconv"
 	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"strings"
 )
 
 type Range struct {
-	lower int; 
+	lower int
 	upper int
 }
 
@@ -21,7 +21,7 @@ func SolveFirst() {
 	fmt.Println("The count of valid ids is: ", res)
 }
 
-func parseFile() ([]Range, []int) {	
+func parseFile() ([]Range, []int) {
 	filePath := "./day_5/first/input.txt"
 	ranges := []Range{}
 	ids := []int{}
@@ -44,7 +44,7 @@ func parseFile() ([]Range, []int) {
 			if err1 != nil || err2 != nil {
 				log.Fatal("Error when converting the strings to integers: ", err)
 			}
-			ranges = append(ranges, Range{lower: first, upper: second})	
+			ranges = append(ranges, Range{lower: first, upper: second})
 		} else {
 			val, err := strconv.Atoi(line)
 			if err != nil {
@@ -58,8 +58,8 @@ func parseFile() ([]Range, []int) {
 
 func getValidCount(ranges []Range, ids []int) int {
 	var count int
-	for _, id := range(ids) {
-		for _, r := range(ranges){
+	for _, id := range ids {
+		for _, r := range ranges {
 			if id >= r.lower && id <= r.upper {
 				count++
 				break
