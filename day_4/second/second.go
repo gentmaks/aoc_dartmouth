@@ -1,11 +1,11 @@
-//Package second
+// Package second
 package second
 
 import (
-	"fmt"
-	"os"
-	"log"
 	"bufio"
+	"fmt"
+	"log"
+	"os"
 )
 
 type Offset struct {
@@ -55,8 +55,8 @@ func checkValid(r int, c int, numRows int, numCols int, grid [][]string) bool {
 		{1, 1},
 		{-1, 1},
 		{1, -1},
-	} 
-	for _, dir := range(directions){
+	}
+	for _, dir := range directions {
 		newR := r + dir.x
 		newC := c + dir.y
 		if newR < 0 || newR >= numRows || newC < 0 || newC >= numCols || grid[newR][newC] != "@" {
@@ -84,8 +84,8 @@ func getDimensions(f *os.File) (int, int) {
 
 func getValidCount(grid *[][]string, numRows int, numCols int) int {
 	res := 0
-	for i, row := range(*grid) {
-		for j, col := range(row){
+	for i, row := range *grid {
+		for j, col := range row {
 			if col == "@" && checkValid(i, j, numRows, numCols, *grid) {
 				res++
 				(*grid)[i][j] = "x"
@@ -96,16 +96,16 @@ func getValidCount(grid *[][]string, numRows int, numCols int) int {
 }
 
 func populateGrid(f *os.File, grid *[][]string) bool {
-    _, err := f.Seek(0, 0)
-    if err != nil {
-        fmt.Println("failed to seek:", err)
-        return false
-    }
+	_, err := f.Seek(0, 0)
+	if err != nil {
+		fmt.Println("failed to seek:", err)
+		return false
+	}
 	scanner := bufio.NewScanner(f)
 	row := 0
 	for scanner.Scan() {
 		line := scanner.Text()
-		for col, char := range(line) {
+		for col, char := range line {
 			(*grid)[row][col] = string(char)
 		}
 		row++
@@ -118,8 +118,8 @@ func populateGrid(f *os.File, grid *[][]string) bool {
 }
 
 func printGrid(grid [][]string) {
-	for _, row := range(grid) {
-		for _, col := range(row){
+	for _, row := range grid {
+		for _, col := range row {
 			fmt.Printf("%q", col)
 		}
 		fmt.Printf("\n")
