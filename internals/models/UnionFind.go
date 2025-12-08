@@ -31,13 +31,22 @@ func (uf *UnionFind) Union(node1 int, node2 int) bool {
 	}
 	if uf.size[node1P] > uf.size[node2P] {
 		uf.parents[node2P] = node1P
-	} else if uf.size[node1P] < uf.size[node2P] {
-		uf.parents[node1P] = node2P
+		uf.size[node1P] += uf.size[node2P]
 	} else {
 		uf.parents[node1P] = node2P
 		uf.size[node2P] += uf.size[node1P]
 	}
 	return true
+}
+
+func (uf *UnionFind) GetSizeArray() []int {
+	sizes := uf.size
+	return sizes
+}
+
+func (uf *UnionFind) GetParentsArray() []int {
+	parents := uf.parents
+	return parents
 }
 
 func (uf *UnionFind) GetConnCompCount() int {

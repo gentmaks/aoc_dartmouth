@@ -8,6 +8,7 @@ import (
 	"log"
 	"math"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -16,9 +17,23 @@ import (
 
 func SolveFirst() {
 	h := &models.VectorHeap{}
+	uf := models.UFInit(1000)
 	populateDistances(h)
+	fmt.Println("Length of the heap is: ", len(*h))
 	heap.Init(h)
-	fmt.Println((*h)[0])
+	fmt.Println("The elements in the heap are: ", *h)
+	count := 0
+	for count < 1000 {
+		v := heap.Pop(h).(models.Vector)
+		d := v.Dist
+		s := v.Source
+		t := v.Target
+		fmt.Println("The smallest distance currently is: ", d)
+		uf.Union(s, t)
+		count++
+	}
+	fmt.Println("Connected component counts: ", uf.GetConnCompCount())
+	fmt.Println("The answer is: ", getAnswer(uf))
 }
 
 func populateDistances(h *models.VectorHeap) {
@@ -72,4 +87,13 @@ func getDistance(a, b []int) float64 {
 	dz := float64(a[2] - b[2])
 
 	return math.Sqrt(dx*dx + dy*dy + dz*dz)
+}
+
+func getAnswer(uf *models.UnionFind) int {
+	sizes := uf.GetSizeArray()
+	sort.Ints(sizes)
+	last := len(sizes) - 1
+	fmt.Println("The sizes array is: ", sizes)
+	fmt.Println("The size of the biggest conn comp is: ", sizes[last])
+	return (sizes[last] * sizes[last-1] * sizes[last-2])
 }
