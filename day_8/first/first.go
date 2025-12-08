@@ -33,7 +33,7 @@ func SolveFirst() {
 		count++
 	}
 	fmt.Println("Connected component counts: ", uf.GetConnCompCount())
-	fmt.Println("The answer is: ", getAnswer(uf))
+	fmt.Println("The answer for problem 1 is: ", getAnswer(uf))
 }
 
 func populateDistances(h *models.VectorHeap) {
