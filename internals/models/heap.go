@@ -1,19 +1,25 @@
 // Package models
 package models
 
-type FloatHeap []float64
-
-func (h FloatHeap) Len() int { return len(h) }
-
-func (h FloatHeap) Less(i, j int) bool { return h[i] < h[j] }
-
-func (h FloatHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
-
-func (h *FloatHeap) Push(x any) {
-	*h = append(*h, x.(float64))
+type Vector struct {
+	Dist   float64
+	Source int
+	Target int
 }
 
-func (h *FloatHeap) Pop() any {
+type VectorHeap []Vector
+
+func (h VectorHeap) Len() int { return len(h) }
+
+func (h VectorHeap) Less(i, j int) bool { return h[i].Dist < h[j].Dist }
+
+func (h VectorHeap) Swap(i, j int) { h[i], h[j] = h[j], h[i] }
+
+func (h *VectorHeap) Push(x any) {
+	*h = append(*h, x.(Vector))
+}
+
+func (h *VectorHeap) Pop() any {
 	old := *h
 	n := len(old)
 	x := old[n-1]
