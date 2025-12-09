@@ -1,4 +1,4 @@
-// Pakcage first
+// Package first
 package first
 
 import (
@@ -59,3 +59,4 @@ func Solve(coords []Coord) int {
 	}
 	return maxArea
 }
+
