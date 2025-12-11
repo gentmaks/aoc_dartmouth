@@ -12,20 +12,15 @@ import (
 func SolveFirst() {
 	data := parse()
 	graph := buildGraph(data)
-	fmt.Println(graph)
-	visited["svr"] = struct{}{}
-	dfs(graph, "svr", 2)
+	dfs(graph, "you")
 	fmt.Println(res)
 }
 
-var (
-	res     = 0
-	visited = map[string]struct{}{}
-)
+var res = 0
 
 func parse() [][]string {
 	data := [][]string{}
-	filePath := "./day_11/first/demo_input.txt"
+	filePath := "./day_11/first/input.txt"
 	f, err := os.Open(filePath)
 	if err != nil {
 		log.Fatal("Error when opening the file: ", err)
@@ -62,25 +57,12 @@ func buildGraph(data [][]string) map[string][]string {
 	return g
 }
 
-func dfs(graph map[string][]string, curr string, rem int) {
-	fmt.Println("curr: ", curr)
+func dfs(graph map[string][]string, curr string) {
 	if curr == "out" {
-		if rem == 0 {
-			res++
-		}
+		res++
 		return
 	}
 	for _, nei := range graph[curr] {
-		_, ok := visited[nei]
-		if ok {
-			continue
-		}
-		if nei == "fft" || nei == "dac" {
-			visited[nei] = struct{}{}
-			dfs(graph, nei, rem-1)
-		} else {
-			visited[nei] = struct{}{}
-			dfs(graph, nei, rem)
-		}
+		dfs(graph, nei)
 	}
 }
