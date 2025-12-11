@@ -1,11 +1,11 @@
 package main
 
 import (
-	// "github.com/gentmaks/aoc_dartmouth/day_10/first"
-	"github.com/gentmaks/aoc_dartmouth/day_10/second"
+	"github.com/gentmaks/aoc_dartmouth/day_11/first"
+	// "github.com/gentmaks/aoc_dartmouth/day_10/second"
 )
 
 func main() {
-	// first.SolveFirst()
-	second.SolveSecond()
+	first.SolveFirst()
+	// second.SolveSecond()
 }
